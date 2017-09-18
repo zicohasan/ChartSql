@@ -14,6 +14,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class MainActivity extends AppCompatActivity {
     Button insertButton;
+    
     EditText inputTextX, inputTextY;
     GraphView graphView;
     LineGraphSeries<DataPoint> series=new LineGraphSeries<>(new DataPoint[0]);
