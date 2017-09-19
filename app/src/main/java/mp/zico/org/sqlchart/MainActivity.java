@@ -14,7 +14,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class MainActivity extends AppCompatActivity {
     Button insertButton;
-    
     EditText inputTextX, inputTextY;
     GraphView graphView;
     LineGraphSeries<DataPoint> series=new LineGraphSeries<>(new DataPoint[0]);
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        insertButton=(Button) findViewById(R.id.button);
+        insertButton=(Button) findViewById(R.id.insertButton);
         inputTextX=(EditText) findViewById(R.id.inputTextX);
         inputTextY=(EditText) findViewById(R.id.inputTextY);
         graphView=(GraphView) findViewById(R.id.graph);
@@ -33,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         myHelper=new MyHelper(this);
         sqLiteDatabase=myHelper.getWritableDatabase();
 
-        exqButton();
+        exqInsert();
 //        LineGraphSeries<DataPoint> series=new LineGraphSeries<>(getDataPoint());
 //        graphView.addSeries(series);
     }
 
-    private void exqButton() {
+    private void exqInsert() {
         insertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private DataPoint[] getDataPoint() {
         // Read Data from database
         String[] columns={"xValues","yValues"};
-        Cursor cursor=sqLiteDatabase.query("MyTable",columns,null,null,null,null,null);
+        Cursor cursor=sqLiteDatabase.query("myTable",columns,null,null,null,null,null);
         DataPoint[] dp=new DataPoint[cursor.getCount()];
-        for (int i=0;i<=cursor.getCount();i++)
+        for (int i=0;i<cursor.getCount();i++)
         {
             cursor.moveToNext();
             dp[i]=new DataPoint(cursor.getInt(0), cursor.getInt(1));

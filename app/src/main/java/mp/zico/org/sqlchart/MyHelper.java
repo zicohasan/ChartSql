@@ -11,10 +11,10 @@ import android.widget.Toast;
  */
 
 public class MyHelper extends SQLiteOpenHelper {
-    private Context con;
+//    private Context con;
     public MyHelper(Context context) {
         super(context, "MyDatabase", null, 1);
-        con=context;
+//        con=context;
     }
 
     @Override
@@ -33,7 +33,6 @@ public class MyHelper extends SQLiteOpenHelper {
     public void insertData(int valX, int valY){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
-
         contentValues.put("xValues",valX);
         contentValues.put("yValues",valY);
         db.insert("myTable", null, contentValues);
